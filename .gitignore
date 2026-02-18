@@ -1,0 +1,29 @@
+# dependencies
+/node_modules
+
+# nextjs
+/.next
+/out
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# env
+.env
+.env.local
+.env.*.local
+
+# prisma
+/prisma/dev.db
+/prisma/dev.db-journal
+
+# coverage and test artifacts
+/coverage
+/playwright-report
+/test-results
+
+# build artifacts
+/dist

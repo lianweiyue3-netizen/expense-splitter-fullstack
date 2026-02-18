@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Group icon">
+  <circle cx="64" cy="64" r="60" fill="#111111"/>
+  <circle cx="64" cy="64" r="44" fill="none" stroke="#f5f5f5" stroke-width="6"/>
+  <path d="M38 70C50 66 63 60 89 44C92 42 95 42 97 43C99 44 99 47 95 51L82 64L82 82L76 87L69 72L53 79L48 74L62 66C53 68 45 71 38 72C34 73 31 72 30 70C29 68 32 66 38 64Z" fill="#f5f5f5"/>
+  <path d="M25 79C37 79 52 74 72 61" fill="none" stroke="#f5f5f5" stroke-width="4" stroke-linecap="round"/>
+</svg>

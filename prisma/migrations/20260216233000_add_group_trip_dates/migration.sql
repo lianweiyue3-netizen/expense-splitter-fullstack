@@ -1,0 +1,6 @@
+ALTER TABLE "Group"
+ADD COLUMN "tripStartDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN "tripEndDate" TIMESTAMP(3);
+
+UPDATE "Group"
+SET "tripStartDate" = "createdAt";

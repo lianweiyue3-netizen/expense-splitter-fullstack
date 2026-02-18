@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: expense-splitter-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: expense_splitter
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: expense-splitter-app
+    restart: unless-stopped
+    depends_on:
+      - db
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    command: sh -c "npm ci && npm run prisma:generate && npm run prisma:deploy && npm run dev"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+
+volumes:
+  pgdata:

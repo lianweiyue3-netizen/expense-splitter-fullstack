@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 36 33% 97%;
+  --foreground: 200 36% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 200 36% 12%;
+  --primary: 192 60% 36%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 148 33% 92%;
+  --secondary-foreground: 163 53% 20%;
+  --muted: 40 24% 92%;
+  --muted-foreground: 200 12% 38%;
+  --accent: 22 85% 89%;
+  --accent-foreground: 18 68% 30%;
+  --border: 30 20% 85%;
+  --input: 30 20% 85%;
+  --ring: 192 60% 36%;
+}
+
+body {
+  @apply bg-black text-white;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  caret-color: transparent;
+}
+
+input,
+textarea,
+[contenteditable='true'] {
+  caret-color: auto;
+}
+
+@keyframes fadeInHero {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-hero {
+  animation: fadeInHero 1.2s ease-out both;
+}
+
+@keyframes globalTravelDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-2%, -1.5%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes globalRouteFlow {
+  0% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 100%,
+      100% 100%;
+    transform: translateX(0);
+  }
+  50% {
+    background-position:
+      8% 2%,
+      92% 4%,
+      6% 96%,
+      94% 98%;
+    transform: translateX(-1%);
+  }
+  100% {
+    background-position:
+      16% 4%,
+      84% 8%,
+      12% 92%,
+      88% 96%;
+    transform: translateX(0);
+  }
+}
+
+.global-travel-bg,
+.global-travel-routes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.global-travel-bg {
+  z-index: -2;
+  opacity: 0.18;
+  background:
+    radial-gradient(
+      900px 500px at 12% 18%,
+      rgba(255, 255, 255, 0.16),
+      transparent 62%
+    ),
+    radial-gradient(
+      700px 420px at 78% 22%,
+      rgba(255, 255, 255, 0.12),
+      transparent 65%
+    ),
+    radial-gradient(
+      650px 360px at 34% 66%,
+      rgba(255, 255, 255, 0.1),
+      transparent 68%
+    ),
+    radial-gradient(
+      520px 300px at 86% 68%,
+      rgba(255, 255, 255, 0.08),
+      transparent 72%
+    );
+  filter: blur(0.4px);
+  animation: globalTravelDrift 26s ease-in-out infinite;
+}
+
+.global-travel-routes {
+  z-index: -1;
+  opacity: 0.16;
+  background-image:
+    radial-gradient(
+      130% 85% at 6% 18%,
+      transparent 62%,
+      rgba(255, 255, 255, 0.9) 62.3%,
+      transparent 63.1%
+    ),
+    radial-gradient(
+      120% 80% at 92% 24%,
+      transparent 66%,
+      rgba(255, 255, 255, 0.85) 66.2%,
+      transparent 67%
+    ),
+    radial-gradient(
+      145% 95% at 22% 86%,
+      transparent 60%,
+      rgba(255, 255, 255, 0.75) 60.25%,
+      transparent 61.05%
+    ),
+    radial-gradient(
+      140% 88% at 88% 82%,
+      transparent 68%,
+      rgba(255, 255, 255, 0.78) 68.2%,
+      transparent 69%
+    );
+  filter: blur(0.6px);
+  animation: globalRouteFlow 40s linear infinite;
+}
+
+.app-lowpoly-bg {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  isolation: isolate;
+}
+
+.app-lowpoly-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #000;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.28)),
+    url('/lowpoly-bg.jpg') center/cover no-repeat;
+  animation: appPhotoFlow 23s ease-in-out infinite;
+}
+
+@keyframes appPhotoFlow {
+  0% {
+    background-position:
+      center,
+      50% 50%;
+    background-size: auto, 100%;
+  }
+  50% {
+    background-position:
+      center,
+      52% 48%;
+    background-size: auto, 106%;
+  }
+  100% {
+    background-position:
+      center,
+      50% 50%;
+    background-size: auto, 100%;
+  }
+}
