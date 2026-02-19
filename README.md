@@ -1,57 +1,59 @@
-# Expense Splitter Fullstack
+# EqualPay（旅行向け割り勘アプリ）
 
-Full-stack travel expense splitting app built with Next.js, Prisma, and PostgreSQL.
+EqualPay は、旅行やグループ活動で発生する支出を記録し、誰がいくら払ったか・誰がいくら負担すべきかを分かりやすく管理するためのフルスタック Web アプリです。複数支払者、均等割り・金額指定・割合指定の分割、精算（Settlement）記録、グループ残高表示まで一連の流れを対応しています。
 
-## Features
+## 主な機能
 
-- Auth with NextAuth
-- Groups, members, invites
-- Add/Edit/Delete expenses
-- Add/Edit/Delete settlements
-- Group balances and net amount
-- Multiple split modes (equal, exact, percentage)
+- 認証（NextAuth）
+- グループ作成・メンバー管理・招待
+- 支出の追加 / 編集 / 削除
+- 精算（Settlement）の追加 / 編集 / 削除
+- グループ残高・個人の貸し借り表示
+- 柔軟な分割方式（均等 / 金額 / 割合）
 
-## Tech Stack
+## 技術スタック
 
-- Next.js 15, React 19, TypeScript
-- Prisma ORM + PostgreSQL
+- Next.js 15 / React 19 / TypeScript
+- Prisma + PostgreSQL
 - Tailwind CSS
-- Vitest and Playwright
-- Docker Compose for local DB
+- Vitest / Playwright
+- Docker Compose（ローカル DB）
 
-## Quick Start
+## ローカル起動
 
-1. npm install
-2. docker compose up -d
-3. npm run prisma:generate
-4. npm run prisma:migrate
-5. npm run dev
+```bash
+npm install
+docker compose up -d
+npm run prisma:generate
+npm run prisma:migrate
+npm run dev
+```
 
-App URL: http://localhost:3000
+起動URL: `http://localhost:3000`
 
-## Environment
+## 環境変数（例）
 
-Create .env from .env.example
+`.env.example` をコピーして `.env` を作成し、以下を設定します。
 
-- DATABASE_URL=postgresql://postgres:postgres@localhost:5432/expense_splitter?schema=public
-- NEXTAUTH_URL=http://localhost:3000
-- NEXTAUTH_SECRET=replace-with-a-long-random-secret
+- `DATABASE_URL`
+- `NEXTAUTH_URL`
+- `NEXTAUTH_SECRET`
 
-## Prisma Studio
+## 主要コマンド
 
-npx prisma studio
+- `npm run dev` : 開発サーバー起動
+- `npm run build` : 本番ビルド
+- `npm run start` : 本番起動
+- `npm run lint` : Lint
+- `npm run typecheck` : 型チェック
+- `npm run test` : 単体テスト
+- `npm run test:e2e` : E2Eテスト
 
-## Useful Scripts
+## デプロイ
 
-- npm run dev
-- npm run build
-- npm run start
-- npm run lint
-- npm run typecheck
-- npm run test
-- npm run test:e2e
+Vercel + Neon（PostgreSQL）構成を想定しています。  
+本番反映時は、環境変数設定後に以下を実行してください。
 
-## Deployment
-
-Deploy app (for example Vercel) and use managed PostgreSQL.
-Run npm run prisma:deploy in production.
+```bash
+npx prisma migrate deploy
+```
