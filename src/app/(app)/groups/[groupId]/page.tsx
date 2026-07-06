@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import { format } from 'date-fns';
 import { notFound } from 'next/navigation';
-import { ExpenseItemActions } from '@/components/expense-item-actions';
-import { GroupActionsPanel } from '@/components/group-actions-panel';
-import { SettlementItemActions } from '@/components/settlement-item-actions';
+import { ExpenseItemActions } from '@/components/expenses/expense-item-actions';
+import { GroupActionsPanel } from '@/components/groups/group-actions-panel';
+import { SettlementItemActions } from '@/components/settlements/settlement-item-actions';
 import { Card } from '@/components/ui/card';
 import { requireAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';

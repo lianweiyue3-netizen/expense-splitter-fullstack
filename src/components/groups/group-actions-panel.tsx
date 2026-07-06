@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ExpenseForm } from '@/components/expense-form';
-import type { ExpenseEditDraft } from '@/components/expense-form';
-import { GroupSettingsPanel } from '@/components/group-settings-panel';
-import { SettlementForm } from '@/components/settlement-form';
-import type { SettlementEditDraft } from '@/components/settlement-form';
+import { ExpenseForm } from '@/components/expenses/expense-form';
+import type { ExpenseEditDraft } from '@/components/expenses/expense-form';
+import { GroupSettingsPanel } from '@/components/groups/group-settings-panel';
+import { SettlementForm } from '@/components/settlements/settlement-form';
+import type { SettlementEditDraft } from '@/components/settlements/settlement-form';
 import { Card } from '@/components/ui/card';
 
 type Member = {

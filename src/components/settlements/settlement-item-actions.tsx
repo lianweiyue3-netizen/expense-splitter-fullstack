@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import type { SettlementEditDraft } from '@/components/settlement-form';
+import type { SettlementEditDraft } from '@/components/settlements/settlement-form';
 
 type Props = {
   groupId: string;

@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { ProfileForm } from '@/components/profile-form';
+import { ProfileForm } from '@/components/profile/profile-form';
 import { requireAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 

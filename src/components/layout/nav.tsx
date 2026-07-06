@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
-import { EqualPayLogo } from '@/components/equalpay-logo';
+import { EqualPayLogo } from '@/components/branding/equalpay-logo';
 import { Button } from '@/components/ui/button';
 
 export function Nav() {

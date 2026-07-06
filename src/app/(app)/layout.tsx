@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { requireAuthSession } from '@/lib/auth';
-import { Nav } from '@/components/nav';
+import { Nav } from '@/components/layout/nav';
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
   await requireAuthSession();

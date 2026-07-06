@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import { CreateGroupForm } from '@/components/create-group-form';
+import { CreateGroupForm } from '@/components/groups/create-group-form';
 import { Card } from '@/components/ui/card';
 import { formatMoney } from '@/lib/utils';
 import { requireAuthSession } from '@/lib/auth';

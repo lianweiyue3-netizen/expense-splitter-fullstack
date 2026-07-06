@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { EqualPayLogo } from '@/components/equalpay-logo';
+import { EqualPayLogo } from '@/components/branding/equalpay-logo';
 import { getAuthSession } from '@/lib/auth';
 
 export default async function HomePage() {

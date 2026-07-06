@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -306,9 +306,6 @@ export function ExpenseForm({
   >({});
   const [replaceExpenseIds, setReplaceExpenseIds] = useState<string[]>([]);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [editExpenseDateIso, setEditExpenseDateIso] = useState<string | null>(
-    null
-  );
 
   const allMembersInvolved = involvementMode === 'ALL';
   const amountMinor = parseAmountToMinor(amountInput);
@@ -325,10 +322,13 @@ export function ExpenseForm({
     );
   }, [members]);
 
-  const memberLabel = (member: Member) =>
-    duplicateNames.has(member.name)
-      ? `${member.name} (${member.email})`
-      : member.name;
+  const memberLabel = useCallback(
+    (member: Member) =>
+      duplicateNames.has(member.name)
+        ? `${member.name} (${member.email})`
+        : member.name,
+    [duplicateNames]
+  );
 
   const activeMembers = useMemo(() => {
     if (allMembersInvolved) {
@@ -407,7 +407,6 @@ export function ExpenseForm({
     );
     setReplaceExpenseIds(editDraft.replaceExpenseIds);
     setIsEditMode(true);
-    setEditExpenseDateIso(editDraft.originalExpenseDateIso ?? null);
     setExpenseDateInput(
       isoToDateInput(editDraft.originalExpenseDateIso ?? null)
     );
@@ -437,15 +436,7 @@ export function ExpenseForm({
       next[lastIndex] = { ...next[lastIndex], amountInput: suggestedText };
       return next;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    amountMinor,
-    payerRows.length,
-    payerRows
-      .slice(0, Math.max(0, payerRows.length - 1))
-      .map((payer) => payer.amountInput)
-      .join('|')
-  ]);
+  }, [amountMinor, payerRows]);
 
   useEffect(() => {
     if (splitType !== SplitType.CUSTOM_AMOUNT || activeMembers.length === 0) {
@@ -473,16 +464,7 @@ export function ExpenseForm({
       }
       return { ...prev, [lastMemberId]: suggestedText };
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    splitType,
-    amountMinor,
-    activeMembers.map((member) => member.id).join('|'),
-    activeMembers
-      .slice(0, Math.max(0, activeMembers.length - 1))
-      .map((member) => customByMember[member.id] ?? '')
-      .join('|')
-  ]);
+  }, [activeMembers, amountMinor, customByMember, splitType]);
 
   useEffect(() => {
     if (splitType !== SplitType.PERCENTAGE || activeMembers.length === 0) {
@@ -507,15 +489,7 @@ export function ExpenseForm({
       }
       return { ...prev, [lastMemberId]: suggestedText };
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    splitType,
-    activeMembers.map((member) => member.id).join('|'),
-    activeMembers
-      .slice(0, Math.max(0, activeMembers.length - 1))
-      .map((member) => percentByMember[member.id] ?? '')
-      .join('|')
-  ]);
+  }, [activeMembers, percentByMember, splitType]);
 
   const payerComputation = useMemo(() => {
     if (payerMode === 'SINGLE') {
@@ -812,7 +786,6 @@ export function ExpenseForm({
         if (!firstError) {
           setReplaceExpenseIds([]);
           setIsEditMode(false);
-          setEditExpenseDateIso(null);
         }
         setMessage(
           firstError ?? (isEditMode ? 'Expense updated' : 'Expense added')
@@ -958,7 +931,6 @@ export function ExpenseForm({
           ) : (
             <div className="space-y-2">
               {payerRows.map((row, index) => {
-                const isLast = index === payerRows.length - 1;
                 const usedByOthers = new Set(
                   payerRows
                     .filter((_, payerIndex) => payerIndex !== index)
@@ -1158,7 +1130,6 @@ export function ExpenseForm({
 
               {splitType === SplitType.CUSTOM_AMOUNT
                 ? activeMembers.map((member, index) => {
-                    const isLast = index === activeMembers.length - 1;
                     const manualCustomMinor = activeMembers
                       .slice(0, Math.max(0, activeMembers.length - 1))
                       .reduce(
@@ -1214,7 +1185,6 @@ export function ExpenseForm({
 
               {splitType === SplitType.PERCENTAGE
                 ? activeMembers.map((member, index) => {
-                    const isLast = index === activeMembers.length - 1;
                     const manualPercentBps = activeMembers
                       .slice(0, Math.max(0, activeMembers.length - 1))
                       .reduce(

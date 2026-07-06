@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import type { ExpenseEditDraft } from '@/components/expense-form';
+import type { ExpenseEditDraft } from '@/components/expenses/expense-form';
 
 type Props = {
   groupId: string;
